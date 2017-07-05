@@ -1,2 +1,45 @@
 // bower:scss
 // endbower
+
+/*------------------------------------*\
+  #VARIABLES
+\*------------------------------------*/
+
+/*------------------------------------*\
+  #BASE STYLES
+\*------------------------------------*/
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+svg,
+img {
+  width: 100%;
+  height: auto;
+}
+
+/*------------------------------------*\
+  #MAP
+\*------------------------------------*/
+
+.map {
+	margin: 0;
+}
