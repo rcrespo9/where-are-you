@@ -1,11 +1,19 @@
 // bower:scss
 // endbower
 
+@import 'bower_components/modular-scale/stylesheets/_modularscale';
+
 /*------------------------------------*\
   #VARIABLES
 \*------------------------------------*/
 
 // typography
+
+$modularscale: (
+  base: 1rem,
+  ratio: $golden
+);
+
 /*------------------------------------*\
   #BASE STYLES
 \*------------------------------------*/
@@ -42,10 +50,6 @@ img {
 \*------------------------------------*/
 
 .page-content {
-	display: flex;
-	height: 100vh;
-	align-items: center;
-	justify-content: center;
 	text-align: center;
 }
 
@@ -53,11 +57,11 @@ img {
   #MAP
 \*------------------------------------*/
 
-.map__header {
-	margin-top: 0;
-	margin-bottom: 1rem;
+.map__header,
+.map__figure {
+	margin: 0;
 }
 
-.map__svg {
-	margin: 0;
+.map__header {
+	font-size: ms(2);
 }
