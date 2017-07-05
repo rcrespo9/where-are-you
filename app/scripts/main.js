@@ -2,6 +2,11 @@
 
 (function() {
 	function init() {
+		fetch('//freegeoip.net/json/').then(function(response) {
+			return response.json();
+		}).then(function(data) {
+			console.log(data); 
+		});
 	}
 
 	function ready(fn) {
