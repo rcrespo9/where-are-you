@@ -3,6 +3,10 @@
 (function() {
 	const detectLocation = () => {
 		const $worldMap = document.querySelector('#js-map');
+		const $countryName = document.querySelector('#js-country-name');
+
+		function articleUseCheck(country) {
+		}
 
 		function detectUserIp() {
 			fetch('//freegeoip.net/json/').then(function(response) {
@@ -10,12 +14,13 @@
 					return response.json();
 				}
 				throw new Error('Network response was not okay.');
-			}).then(function(data) {
-				const {country_code, country_name} = data;
+			}).then(function(countries) {
+				const {country_code, country_name} = countries;
 				const $country = $worldMap.querySelector(`#${country_code}`);
 
-				console.log(data);
+				console.log(countries);
 
+				$countryName.innerHTML = country_name;
 				$country.classList.add('active-country');
 			}).catch(function(error) {
 				console.log('There has been a problem with your fetch operation: ' + error.message);
