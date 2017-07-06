@@ -50,28 +50,39 @@ img {
 \*------------------------------------*/
 
 .page-content {
-	text-align: center;
+	height: 100vh;
 }
 
 /*------------------------------------*\
   #MAP
 \*------------------------------------*/
 
-.map__header,
-.map__figure {
-	margin: 0;
+.map {
+	// display: flex;
+	// flex-wrap: wrap;
+	height: 100%;
+	text-align: center;
 }
 
-.map__header {
-	font-size: ms(2);
-}
-
-.map__svg {
-	fill: none;
-	stroke-linejoin: round;
-	stroke: #000;
-}
-
-	.map__country--active {
-		fill: red;
+	.map__header,
+	.map__figure {
+		margin: 0;
 	}
+
+	.map__header {
+		font-size: ms(2);
+	}
+
+	.map__figure {
+		// flex: 0 0 100%;
+		// align-self: center;
+	}
+		.map__svg {
+			fill: none;
+			stroke-linejoin: round;
+			stroke: #000;
+		}
+
+			.map__country--active {
+				fill: red;
+			}
