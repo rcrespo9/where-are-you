@@ -58,8 +58,6 @@ img {
 \*------------------------------------*/
 
 .map {
-	// display: flex;
-	// flex-wrap: wrap;
 	height: 100%;
 	text-align: center;
 }
@@ -74,9 +72,8 @@ img {
 	}
 
 	.map__figure {
-		// flex: 0 0 100%;
-		// align-self: center;
 	}
+
 		.map__svg {
 			fill: none;
 			stroke-linejoin: round;
