@@ -6,6 +6,20 @@
 		const $countryName = document.querySelector('#js-country-name');
 
 		function articleUseCheck(country) {
+			const endsWithEs = country.endsWith('es');
+			const endsWithLands = country.endsWith('lands');
+			const includesKingdom = country.includes('kingdom');
+			const includesRep = country.includes('republic');
+			const includesIsland = country.includes('island');
+			const isBahamas = country === 'Bahamas';
+			const isGambia = country === 'Gambia';
+			const isComoros = country === 'Comoros';
+
+			if(endsWithEs || endsWithLands || includesKingdom || includesRep || includesIsland || isBahamas || isGambia || isComoros) {
+				return `the ${country}`;
+			} else {
+				return country;
+			}
 		}
 
 		function detectUserIp() {
@@ -20,7 +34,7 @@
 
 				console.log(countries);
 
-				$countryName.innerHTML = country_name;
+				$countryName.textContent = articleUseCheck(country_name);
 				$country.classList.add('active-country');
 			}).catch(function(error) {
 				console.log('There has been a problem with your fetch operation: ' + error.message);
