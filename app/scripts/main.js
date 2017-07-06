@@ -35,7 +35,7 @@
 				console.log(countries);
 
 				$countryName.textContent = articleUseCheck(country_name);
-				$country.classList.add('active-country');
+				$country.classList.add('map__country--active');
 			}).catch(function(error) {
 				console.log('There has been a problem with your fetch operation: ' + error.message);
 			});

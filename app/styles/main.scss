@@ -66,6 +66,12 @@ img {
 	font-size: ms(2);
 }
 
-.active-country {
-	fill: red;
+.map__svg {
+	fill: none;
+	stroke-linejoin: round;
+	stroke: #000;
 }
+
+	.map__country--active {
+		fill: red;
+	}
