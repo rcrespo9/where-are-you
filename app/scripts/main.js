@@ -8,9 +8,9 @@
 		function articleUseCheck(country) {
 			const endsWithEs = country.endsWith('es');
 			const endsWithLands = country.endsWith('lands');
-			const includesKingdom = country.includes('kingdom');
-			const includesRep = country.includes('republic');
-			const includesIsland = country.includes('island');
+			const includesKingdom = country.includes('Kingdom');
+			const includesRep = country.includes('Republic');
+			const includesIsland = country.includes('Island');
 			const isBahamas = country === 'Bahamas';
 			const isGambia = country === 'Gambia';
 			const isComoros = country === 'Comoros';

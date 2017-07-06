@@ -50,6 +50,9 @@ img {
 \*------------------------------------*/
 
 .page-content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	height: 100vh;
 }
 
@@ -58,7 +61,7 @@ img {
 \*------------------------------------*/
 
 .map {
-	height: 100%;
+	flex: 1;
 	text-align: center;
 }
 
@@ -68,10 +71,14 @@ img {
 	}
 
 	.map__header {
+		margin-bottom: ms(-3);
 		font-size: ms(2);
 	}
 
 	.map__figure {
+		width: 100%;
+		max-width: ms(9);
+		margin: 0 auto;
 	}
 
 		.map__svg {
