@@ -14,6 +14,12 @@ $modularscale: (
   ratio: $golden
 );
 
+// colors
+$light-gray: #e3e6eb;
+$medium-gray: #bcc4d2;
+
+$dark-blue: #3a4b5f;
+
 /*------------------------------------*\
   #BASE STYLES
 \*------------------------------------*/
@@ -25,9 +31,9 @@ $modularscale: (
 }
 
 body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
 }
 
 audio,
@@ -72,7 +78,10 @@ img {
 
 	.map__header {
 		margin-bottom: ms(0);
-		font-size: ms(2);
+		color: $dark-blue;
+		font-family: 'refrigerator-deluxe', monospace;
+		font-size: ms(3);
+		font-weight: 400;
 	}
 
 	.map__figure {
@@ -84,9 +93,13 @@ img {
 		.map__svg {
 			fill: none;
 			stroke-linejoin: round;
-			stroke: #000;
+			stroke: #fff;
 		}
 
+			.map__country {
+				fill: $light-gray;
+			}
+
 			.map__country--active {
-				fill: red;
+				fill: $medium-gray;
 			}
