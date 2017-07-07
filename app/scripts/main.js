@@ -35,6 +35,7 @@
 				$countryName.textContent = articleUseCheck(country_name);
 				$countryImg.classList.add('map__country--active');
 			}).catch(function(error) {
+				$countryName.textContent = 'a country I\'m not familiar with';
 				console.log('There has been a problem with your fetch operation: ' + error.message);
 			});
 		}
