@@ -10,15 +10,16 @@
 // typography
 
 $modularscale: (
-  base: 1rem,
-  ratio: $golden
+	base: 1rem,
+	ratio: $golden
 );
 
 // colors
 $light-gray: #e3e6eb;
 $medium-gray: #bcc4d2;
 
-$dark-blue: #3a4b5f;
+$medium-blue: #3a4b5f;
+$dark-blue: #243549;
 
 /*------------------------------------*\
   #BASE STYLES
@@ -56,9 +57,6 @@ img {
 \*------------------------------------*/
 
 .page-content {
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	height: 100vh;
 }
 
@@ -71,18 +69,17 @@ img {
 	text-align: center;
 }
 
-	.map__header,
-	.map__figure {
-		margin: 0;
+	.map__header {
+		margin-bottom: ms(-3);
 	}
 
-	.map__header {
-		margin-bottom: ms(0);
-		color: $dark-blue;
-		font-family: 'refrigerator-deluxe', monospace;
-		font-size: ms(3);
-		font-weight: 400;
-	}
+		.header__title {
+			margin: 0;
+			color: $medium-blue;
+			font-family: 'refrigerator-deluxe', monospace;
+			font-size: ms(3);
+			font-weight: 400;
+		}
 
 	.map__figure {
 		width: 100%;
@@ -102,4 +99,18 @@ img {
 
 			.map__country--active {
 				fill: $medium-gray;
+			}
+
+	.map__footer {}
+
+		.footer__credit {
+			color: $medium-blue;
+			font-family: 'proxima-nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+			font-size: ms(0);
+		}
+
+			.footer__credit a {
+				text-decoration: none;
+				color: $dark-blue;
+				font-weight: 600;
 			}
