@@ -9,7 +9,7 @@
 
 // typography
 $modularscale: (
-	base: 1rem,
+	base: 1em,
 	ratio: $fourth
 );
 
@@ -30,6 +30,9 @@ $dark-blue: #243549;
 *:before,
 *:after {
   box-sizing: border-box;
+}
+
+html {
 }
 
 body {
