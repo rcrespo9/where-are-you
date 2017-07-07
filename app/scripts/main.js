@@ -28,14 +28,12 @@
 					return response.json();
 				}
 				throw new Error('Network response was not okay.');
-			}).then(function(countries) {
-				const {country_code, country_name} = countries;
-				const $country = $worldMap.querySelector(`#${country_code}`);
-
-				console.log(countries);
+			}).then(function(country) {
+				const {country_code, country_name} = country;
+				const $countryImg = $worldMap.querySelector(`#${country_code}`);
 
 				$countryName.textContent = articleUseCheck(country_name);
-				$country.classList.add('map__country--active');
+				$countryImg.classList.add('map__country--active');
 			}).catch(function(error) {
 				console.log('There has been a problem with your fetch operation: ' + error.message);
 			});
