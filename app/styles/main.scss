@@ -14,6 +14,8 @@ $modularscale: (
 );
 
 // colors
+$white: #fff;
+
 $light-gray: #e3e6eb;
 $medium-gray: #bcc4d2;
 
@@ -49,6 +51,18 @@ svg,
 img {
   width: 100%;
   height: auto;
+}
+
+::-moz-selection {
+    background: $dark-blue;
+    color: $white;
+    text-shadow: none;
+}
+
+::selection {
+    background: $dark-blue;
+    color: $white;
+    text-shadow: none;
 }
 
 /*------------------------------------*\
