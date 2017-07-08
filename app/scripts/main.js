@@ -1,9 +1,12 @@
 'use strict';
 
+require('babel-polyfill');
+
 (function() {
 	const detectLocation = () => {
 		const $worldMap = document.querySelector('#js-map');
 		const $countryName = document.querySelector('#js-country-name');
+		const activeCountryClass = 'map__country--active';
 
 		function articleUseCheck(country) {
 			const endsWithEs = country.endsWith('es');
@@ -32,10 +35,13 @@
 				const {country_code, country_name} = country;
 				const $countryImg = $worldMap.querySelector(`#${country_code}`);
 
-				console.log(country);
-
 				$countryName.textContent = articleUseCheck(country_name);
-				$countryImg.classList.add('map__country--active');
+
+				if($countryImg.classList) {
+				  $countryImg.classList.add(activeCountryClass);
+				} else {
+				  $countryImg.setAttribute('class', `map__country ${activeCountryClass}`);
+				}
 			}).catch(function(error) {
 				$countryName.textContent = 'a country I\'m not familiar with';
 				console.log('There has been a problem with your fetch operation: ' + error.message);
