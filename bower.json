@@ -4,7 +4,9 @@
   "dependencies": {
     "modernizr": "~2.8.1",
     "normalize-css": "^7.0.0",
-    "modular-scale": "^3.0.2"
+    "modular-scale": "^3.0.2",
+    "fetch": "^2.0.3",
+    "promise-polyfill": "^6.0.2"
   },
   "devDependencies": {
     "chai": "^4.0.2",

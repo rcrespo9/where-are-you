@@ -32,6 +32,8 @@
 				const {country_code, country_name} = country;
 				const $countryImg = $worldMap.querySelector(`#${country_code}`);
 
+				console.log(country);
+
 				$countryName.textContent = articleUseCheck(country_name);
 				$countryImg.classList.add('map__country--active');
 			}).catch(function(error) {
