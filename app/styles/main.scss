@@ -22,6 +22,11 @@ $medium-gray: #bcc4d2;
 $medium-blue: #3a4b5f;
 $dark-blue: #243549;
 
+// breakpoints
+$mobile: 40em;
+$tablet: 50em;
+$large-screen: 100em;
+
 /*------------------------------------*\
   #BASE STYLES
 \*------------------------------------*/
@@ -33,6 +38,19 @@ $dark-blue: #243549;
 }
 
 html {
+	font-size: .750em;
+
+	@media(min-width: $mobile) {
+		font-size: .875em;
+	}
+
+	@media(min-width: $tablet) {
+		font-size: 1em;
+	}
+
+	@media(min-width: $large-screen) {
+		font-size: 1vw;
+	}
 }
 
 body {
@@ -106,7 +124,7 @@ img {
 		justify-content: center;
 		align-items: center;
 		width: 100%;
-		max-width: ms(15);
+		max-width: ms(17, 1vh);
 		margin: 0 auto;
 	}
 
