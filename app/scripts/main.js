@@ -26,7 +26,7 @@ require('babel-polyfill');
 			}
 		}
 
-		function spotlightCoint(svgEl, pathEl) {
+		function spotlightCountry(svgEl, pathEl) {
 			const $svg = document.querySelector(svgEl);
 			const $path = $svg.querySelector(pathEl);
 
@@ -74,7 +74,7 @@ require('babel-polyfill');
 				$countryImg.classList.add(activeCountryClass);
 
 				document.querySelector('.map__country:not(.map__country--active)').addEventListener('transitionend', function() {
-					spotlightCoint('#js-map', countryCodeId);
+					spotlightCountry('#js-map', countryCodeId);
 				}, false)
 			}).catch(function(error) {
 				$countryName.textContent = 'a country I\'m not familiar with';
