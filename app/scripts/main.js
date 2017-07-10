@@ -31,7 +31,7 @@ require('babel-polyfill');
 			const bbox = path.getBBox();
 
 			let viewBox = svg.getAttribute('viewBox');
-			viewBox = viewBox.split(' ');
+			viewBox = viewBox.split(' '); // fix this
 
 			const cx = parseFloat(viewBox[0]) + (parseFloat(viewBox[2]) / 2);
 			const cy = parseFloat(viewBox[1]) + (parseFloat(viewBox[3]) / 2);
@@ -41,7 +41,6 @@ require('babel-polyfill');
 			const matrix = `1 0 0 1 ${x} ${y}`;
 
 			path.setAttribute('transform', `matrix(${matrix})`);
-
 		}
 
 		function detectUserIp() {
@@ -63,7 +62,7 @@ require('babel-polyfill');
 				  $countryImg.setAttribute('class', `map__country ${activeCountryClass}`);
 				}
 
-				centerSVGPath('#js-map', countryCodeId);
+				// centerSVGPath('#js-map', countryCodeId);
 			}).catch(function(error) {
 				$countryName.textContent = 'a country I\'m not familiar with';
 				console.log('There has been a problem with your fetch operation: ' + error.message);

@@ -137,10 +137,6 @@ img {
 			.map__country {
 				fill: $light-gray;
 				transition: transform .3s ease-in-out;
-
-				&:not(.map__country--active) {
-					display: none;
-				}
 			}
 
 			.map__country--active {
