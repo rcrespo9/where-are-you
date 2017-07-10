@@ -25,6 +25,25 @@ require('babel-polyfill');
 			}
 		}
 
+		function centerSVGPath(svgEl, pathEl) {
+			const svg = document.querySelector(svgEl);
+			const path = svg.querySelector(pathEl)
+			const bbox = path.getBBox();
+
+			let viewBox = svg.getAttribute('viewBox');
+			viewBox = viewBox.split(' ');
+
+			const cx = parseFloat(viewBox[0]) + (parseFloat(viewBox[2]) / 2);
+			const cy = parseFloat(viewBox[1]) + (parseFloat(viewBox[3]) / 2);
+
+			const x = cx - bbox.x - (bbox.width / 2);
+			const y = cy - bbox.y - (bbox.height / 2);
+			const matrix = '1 0 0 1 ' + x + ' ' + y;
+
+			path.setAttribute('transform', `translate(${x},${y})`);
+
+		}
+
 		function detectUserIp() {
 			fetch('//freegeoip.net/json/').then(function(response) {
 				if(response.ok) {
@@ -33,7 +52,8 @@ require('babel-polyfill');
 				throw new Error('Network response was not okay.');
 			}).then(function(country) {
 				const {country_code, country_name} = country;
-				const $countryImg = $worldMap.querySelector(`#${country_code}`);
+				const countryCodeId = `#${country_code}`;
+				const $countryImg = $worldMap.querySelector(countryCodeId);
 
 				$countryName.textContent = articleUseCheck(country_name);
 
@@ -42,6 +62,8 @@ require('babel-polyfill');
 				} else {
 				  $countryImg.setAttribute('class', `map__country ${activeCountryClass}`);
 				}
+
+				// centerSVGPath('#js-map', countryCodeId);
 			}).catch(function(error) {
 				$countryName.textContent = 'a country I\'m not familiar with';
 				console.log('There has been a problem with your fetch operation: ' + error.message);
