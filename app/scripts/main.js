@@ -7,6 +7,7 @@ require('babel-polyfill');
 		const $worldMap = document.querySelector('#js-map');
 		const $countryName = document.querySelector('#js-country-name');
 		const activeCountryClass = 'map__country--active';
+		const hideOtherCountriesClass = 'map__svg--hide-inactive';
 
 		function articleUseCheck(country) {
 			const endsWithEs = country.endsWith('es');
@@ -25,22 +26,29 @@ require('babel-polyfill');
 			}
 		}
 
-		function centerSVGPath(svgEl, pathEl) {
-			const svg = document.querySelector(svgEl);
-			const path = svg.querySelector(pathEl)
-			const bbox = path.getBBox();
+		function spotlightCoint(svgEl, pathEl) {
+			const $svg = document.querySelector(svgEl);
+			const $path = $svg.querySelector(pathEl);
 
-			let viewBox = svg.getAttribute('viewBox');
-			viewBox = viewBox.split(' '); // fix this
+			const bbox = $path.getBBox();
+			const svgBBox = $svg.getBBox();
+
+			let viewBox = $svg.getAttribute('viewBox');
+			viewBox = viewBox.split(' ');
+
+			const widthQuotient = svgBBox.width / bbox.width;
+			const heightQuotient = svgBBox.height / bbox.height;
+
+			const svgPathScale = Math.min(widthQuotient, heightQuotient);
 
 			const cx = parseFloat(viewBox[0]) + (parseFloat(viewBox[2]) / 2);
 			const cy = parseFloat(viewBox[1]) + (parseFloat(viewBox[3]) / 2);
 
 			const x = cx - bbox.x - (bbox.width / 2);
 			const y = cy - bbox.y - (bbox.height / 2);
-			const matrix = `1 0 0 1 ${x} ${y}`;
+			const matrix = `${svgPathScale} 0 0 ${svgPathScale} ${x} ${y}`;
 
-			path.setAttribute('transform', `matrix(${matrix})`);
+			$path.setAttribute('transform', `matrix(${matrix})`);
 		}
 
 		function detectUserIp() {
@@ -57,12 +65,17 @@ require('babel-polyfill');
 				$countryName.textContent = articleUseCheck(country_name);
 
 				if($countryImg.classList) {
-				  $countryImg.classList.add(activeCountryClass);
+					$worldMap.classList.add(hideOtherCountriesClass);
 				} else {
-				  $countryImg.setAttribute('class', `map__country ${activeCountryClass}`);
+					$countryImg.setAttribute('class', `map__country ${activeCountryClass}`);
 				}
 
-				// centerSVGPath('#js-map', countryCodeId);
+				// refactor this
+				$countryImg.classList.add(activeCountryClass);
+
+				document.querySelector('.map__country:not(.map__country--active)').addEventListener('transitionend', function() {
+					spotlightCoint('#js-map', countryCodeId);
+				}, false)
 			}).catch(function(error) {
 				$countryName.textContent = 'a country I\'m not familiar with';
 				console.log('There has been a problem with your fetch operation: ' + error.message);

@@ -134,14 +134,24 @@ img {
 			stroke: #fff;
 		}
 
+		.map__svg--hide-inactive .map__country:not(.map__country--active) {
+			opacity: 0;
+		}
+
 			.map__country {
 				fill: $light-gray;
-				transition: transform .3s ease-in-out;
+
+				&:not(.map__country--active) {
+					will-change: opacity;
+					transition: opacity .5s ease-in-out;
+				}
 			}
 
 			.map__country--active {
 				fill: $medium-gray;
+				will-change: transform;
 				transform-origin: 50% 50%;
+				transition: transform .5s .25s ease-in-out;
 			}
 
 	.footer__credit {
