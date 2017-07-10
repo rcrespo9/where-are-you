@@ -38,9 +38,9 @@ require('babel-polyfill');
 
 			const x = cx - bbox.x - (bbox.width / 2);
 			const y = cy - bbox.y - (bbox.height / 2);
-			const matrix = '1 0 0 1 ' + x + ' ' + y;
+			const matrix = `1 0 0 1 ${x} ${y}`;
 
-			path.setAttribute('transform', `translate(${x},${y})`);
+			path.setAttribute('transform', `matrix(${matrix})`);
 
 		}
 
@@ -63,7 +63,7 @@ require('babel-polyfill');
 				  $countryImg.setAttribute('class', `map__country ${activeCountryClass}`);
 				}
 
-				// centerSVGPath('#js-map', countryCodeId);
+				centerSVGPath('#js-map', countryCodeId);
 			}).catch(function(error) {
 				$countryName.textContent = 'a country I\'m not familiar with';
 				console.log('There has been a problem with your fetch operation: ' + error.message);
