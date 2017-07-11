@@ -6,6 +6,7 @@ require('babel-polyfill');
 	const detectLocation = () => {
 		const $worldMap = document.querySelector('#js-map');
 		const $countryName = document.querySelector('#js-country-name');
+
 		const activeCountryClass = 'map__country--active';
 		const hideOtherCountriesClass = 'map__svg--hide-inactive';
 
@@ -48,7 +49,8 @@ require('babel-polyfill');
 			const y = cy - bbox.y - (bbox.height / 2);
 			const matrix = `${svgPathScale} 0 0 ${svgPathScale} ${x} ${y}`;
 
-			$path.setAttribute('transform', `matrix(${matrix})`);
+			// $path.setAttribute('transform', `matrix(${matrix})`);
+			// $path.setAttribute('transform-origin', '50% 50%');
 		}
 
 		function detectUserIp() {
@@ -66,16 +68,10 @@ require('babel-polyfill');
 				$countryName.textContent = articleUseCheck(country_name);
 
 				if($countryImg.classList) {
-					$worldMap.classList.add(hideOtherCountriesClass);
 					$countryImg.classList.add(activeCountryClass);
 				} else {
-					$worldMap.setAttribute('class', `map__svg ${hideOtherCountriesClass}`);
 					$countryImg.setAttribute('class', `map__country ${activeCountryClass}`);
 				}
-
-				$inactiveCountries.addEventListener('transitionend', spotlightCountry('#js-map', countryCodeId));
-
-				console.log(Modernizr);
 			}).catch(function(error) {
 				$countryName.textContent = 'a country I\'m not familiar with';
 
