@@ -51,8 +51,8 @@ require('babel-polyfill');
 			const tl = new TimelineLite();
 
 			tl
-			  .to($inactiveCountries, .75, { opacity:0, ease:Power2.easeInOut })
-			  .to($activeCountry, .75, { x:x, y:y, scale:svgPathScale, transformOrigin:'center center', delay: .5, ease:Power2.easeInOut });
+			  .to($inactiveCountries, 0.75, { opacity:0, ease:Power2.easeInOut })
+			  .to($activeCountry, 0.75, { x:x, y:y, scale:svgPathScale, transformOrigin:'center center', delay: 0.25, ease:Power2.easeInOut });
 		}
 
 		function detectUserIp() {
