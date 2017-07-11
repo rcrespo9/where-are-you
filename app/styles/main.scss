@@ -92,8 +92,14 @@ img {
 \*------------------------------------*/
 
 .page-content {
+	opacity: 0;
 	height: 100vh;
 	padding: ms(3) ms(2);
+	transition: opacity .5s ease-in-out;
+}
+
+.page-content--show {
+	opacity: 1;
 }
 
 /*------------------------------------*\
@@ -184,11 +190,11 @@ img {
 }
 
 // header to display no-js
-.no-js .header__title:not(.header__title--no-js) {
+.no-js .map__header > .header__title {
 	display: none;
 }
 
-.header__title--no-js {
+noscript > .header__title {
 	font-size: ms(3);
 }
 

@@ -32,7 +32,13 @@
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <main class="page-content">
+    <noscript>
+    	<style>
+    		.no-js .page-content { opacity: 1; }
+    	</style>
+    </noscript>
+
+    <main class="page-content" id="js-page-content">
     	<article class="map">
     		<header class="map__header">
 	    		<h1 class="header__title">
@@ -40,7 +46,7 @@
 	    		</h1>
 
 	    		<noscript>
-	    			<h1 class="header__title header__title--no-js">
+	    			<h1 class="header__title">
 	    				I don't know where you are — you've disabled JavaScript!
 	    			</h1>
 	    		</noscript>

@@ -4,10 +4,12 @@ require('babel-polyfill');
 
 (function() {
 	const detectLocation = () => {
+		const $pageContent = document.querySelector('#js-page-content');
 		const $worldMap = document.querySelector('#js-map');
 		const $countryName = document.querySelector('#js-country-name');
 
 		const activeCountryClass = 'map__country--active';
+		const showClass = 'page-content--show';
 
 		function articleUseCheck(country) {
 			const endsWithEs = country.endsWith('es');
@@ -51,7 +53,7 @@ require('babel-polyfill');
 			const tl = new TimelineLite();
 
 			tl
-			  .to($inactiveCountries, 0.75, { opacity:0, ease:Power2.easeInOut })
+			  .to($inactiveCountries, 0.75, { opacity:0, delay: 0.75, ease:Power2.easeInOut })
 			  .to($activeCountry, 0.75, { x:x, y:y, scale:svgPathScale, transformOrigin:'center center', delay: 0.25, ease:Power2.easeInOut });
 		}
 
@@ -74,9 +76,11 @@ require('babel-polyfill');
 					$countryImg.setAttribute('class', `map__country ${activeCountryClass}`);
 				}
 
-				spotlightCountry(countryCodeId);
+				$pageContent.classList.add(showClass);
+				$pageContent.addEventListener('transitionend', spotlightCountry(countryCodeId));
 			}).catch(function(error) {
 				$countryName.textContent = 'a country I\'m not familiar with';
+				$pageContent.classList.add(showClass);
 
 				console.log('There has been a problem with your fetch operation: ' + error.message);
 			});
