@@ -188,8 +188,14 @@ img {
   #FALLBACKS
 \*------------------------------------*/
 
+// flexbox fix
 .no-flexboxlegacy,
 .no-flexboxlegacy > body,
 .no-flexboxlegacy .page-content {
   height: 100%;
+}
+
+// header to display no-js
+.no-js .header__title:not(.header__title--no-js) {
+	display: none;
 }

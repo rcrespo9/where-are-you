@@ -61,23 +61,24 @@ require('babel-polyfill');
 				const {country_code, country_name} = country;
 				const countryCodeId = `#${country_code}`;
 				const $countryImg = $worldMap.querySelector(countryCodeId);
+				const $inactiveCountries = $worldMap.querySelector('.map__country:not(.map__country--active)');
 
 				$countryName.textContent = articleUseCheck(country_name);
 
 				if($countryImg.classList) {
 					$worldMap.classList.add(hideOtherCountriesClass);
+					$countryImg.classList.add(activeCountryClass);
 				} else {
+					$worldMap.setAttribute('class', `map__svg ${hideOtherCountriesClass}`);
 					$countryImg.setAttribute('class', `map__country ${activeCountryClass}`);
 				}
 
-				// refactor this
-				$countryImg.classList.add(activeCountryClass);
+				$inactiveCountries.addEventListener('transitionend', spotlightCountry('#js-map', countryCodeId));
 
-				document.querySelector('.map__country:not(.map__country--active)').addEventListener('transitionend', function() {
-					spotlightCountry('#js-map', countryCodeId);
-				}, false)
+				console.log(Modernizr);
 			}).catch(function(error) {
 				$countryName.textContent = 'a country I\'m not familiar with';
+
 				console.log('There has been a problem with your fetch operation: ' + error.message);
 			});
 		}
