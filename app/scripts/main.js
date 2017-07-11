@@ -8,7 +8,6 @@ require('babel-polyfill');
 		const $countryName = document.querySelector('#js-country-name');
 
 		const activeCountryClass = 'map__country--active';
-		const hideOtherCountriesClass = 'map__svg--hide-inactive';
 
 		function articleUseCheck(country) {
 			const endsWithEs = country.endsWith('es');
@@ -27,14 +26,14 @@ require('babel-polyfill');
 			}
 		}
 
-		function spotlightCountry(svgEl, pathEl) {
-			const $svg = document.querySelector(svgEl);
-			const $path = $svg.querySelector(pathEl);
+		function spotlightCountry(pathEl) {
+			const $activeCountry = $worldMap.querySelector(pathEl);
+			const $inactiveCountries = $worldMap.querySelectorAll('.map__country:not(.map__country--active)');
 
-			const bbox = $path.getBBox();
-			const svgBBox = $svg.getBBox();
+			const bbox = $activeCountry.getBBox();
+			const svgBBox = $worldMap.getBBox();
 
-			let viewBox = $svg.getAttribute('viewBox');
+			let viewBox = $worldMap.getAttribute('viewBox');
 			viewBox = viewBox.split(' ');
 
 			const widthQuotient = svgBBox.width / bbox.width;
@@ -49,8 +48,11 @@ require('babel-polyfill');
 			const y = cy - bbox.y - (bbox.height / 2);
 			const matrix = `${svgPathScale} 0 0 ${svgPathScale} ${x} ${y}`;
 
-			// $path.setAttribute('transform', `matrix(${matrix})`);
-			// $path.setAttribute('transform-origin', '50% 50%');
+			const tl = new TimelineLite();
+
+			tl
+			  .to($inactiveCountries, .75, { opacity:0, ease:Power2.easeInOut })
+			  .to($activeCountry, .75, { x:x, y:y, scale:svgPathScale, transformOrigin:'center center', delay: .5, ease:Power2.easeInOut });
 		}
 
 		function detectUserIp() {
@@ -63,7 +65,6 @@ require('babel-polyfill');
 				const {country_code, country_name} = country;
 				const countryCodeId = `#${country_code}`;
 				const $countryImg = $worldMap.querySelector(countryCodeId);
-				const $inactiveCountries = $worldMap.querySelector('.map__country:not(.map__country--active)');
 
 				$countryName.textContent = articleUseCheck(country_name);
 
@@ -72,6 +73,8 @@ require('babel-polyfill');
 				} else {
 					$countryImg.setAttribute('class', `map__country ${activeCountryClass}`);
 				}
+
+				spotlightCountry(countryCodeId);
 			}).catch(function(error) {
 				$countryName.textContent = 'a country I\'m not familiar with';
 
