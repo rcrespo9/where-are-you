@@ -118,11 +118,18 @@ img {
 	}
 
 		.header__title {
-			margin: 0;
+			margin: 0 auto;
 			color: $medium-blue;
 			font-family: 'refrigerator-deluxe', monospace;
 			font-size: ms(5);
 			font-weight: 400;
+			max-width: ms(6);
+			line-height: 1;
+
+			@media(min-width: $mobile) {
+				max-width: none;
+				line-height: inherit;
+			}
 		}
 
 	.map__figure {
