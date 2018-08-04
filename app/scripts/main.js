@@ -55,10 +55,10 @@ require('babel-polyfill');
 			tl
 			  .to($inactiveCountries, 0.75, { opacity:0, delay: 0.75, ease:Power2.easeInOut })
 			  .to($activeCountry, 0.75, { x:x, y:y, scale:svgPathScale, transformOrigin:'center center', delay: 0.25, ease:Power2.easeInOut });
-		}
+    }
 
 		function detectUserIp() {
-			fetch('//freegeoip.net/json/').then(function(response) {
+			fetch(`//api.ipstack.com/check?access_key=`).then(function (response) {
 				if(response.ok) {
 					return response.json();
 				}
