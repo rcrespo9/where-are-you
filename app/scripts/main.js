@@ -58,17 +58,17 @@ require('babel-polyfill');
     }
 
 		function detectUserIp() {
-			fetch(`//api.ipstack.com/check?access_key=`).then(function (response) {
+			fetch('//ip-api.com/json').then(function (response) {
 				if(response.ok) {
 					return response.json();
 				}
 				throw new Error('Network response was not okay.');
-			}).then(function(country) {
-				const {country_code, country_name} = country;
-				const countryCodeId = `#${country_code}`;
+			}).then(function (detectedCountry) {
+				const {countryCode, country} = detectedCountry;
+				const countryCodeId = `#${countryCode}`;
 				const $countryImg = $worldMap.querySelector(countryCodeId);
 
-				$countryName.textContent = articleUseCheck(country_name);
+				$countryName.textContent = articleUseCheck(country);
 
 				if($countryImg.classList) {
 					$countryImg.classList.add(activeCountryClass);
@@ -82,7 +82,7 @@ require('babel-polyfill');
 				$countryName.textContent = 'a country I\'m not familiar with';
 				$pageContent.classList.add(showClass);
 
-				console.log('There has been a problem with your fetch operation: ' + error.message);
+				throw new Error(`There has been a problem with your fetch operation: ${error.message}`);
 			});
 		}
 
