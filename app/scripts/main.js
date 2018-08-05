@@ -58,7 +58,7 @@ require('babel-polyfill');
     }
 
 		function detectUserIp() {
-			fetch('//ip-api.com/json').then(function (response) {
+			fetch('http://ip-api.com/json').then(function (response) {
 				if(response.ok) {
 					return response.json();
 				}
