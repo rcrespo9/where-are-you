@@ -58,17 +58,17 @@ require('babel-polyfill');
     }
 
 		function detectUserIp() {
-			fetch('http://ip-api.com/json').then(function (response) {
+			fetch('//geoip.nekudo.com/api/').then(function (response) {
 				if(response.ok) {
 					return response.json();
 				}
 				throw new Error('Network response was not okay.');
 			}).then(function (detectedCountry) {
-				const {countryCode, country} = detectedCountry;
-				const countryCodeId = `#${countryCode}`;
+				const {code, name} = detectedCountry.country;
+				const countryCodeId = `#${code}`;
 				const $countryImg = $worldMap.querySelector(countryCodeId);
 
-				$countryName.textContent = articleUseCheck(country);
+				$countryName.textContent = articleUseCheck(name);
 
 				if($countryImg.classList) {
 					$countryImg.classList.add(activeCountryClass);
