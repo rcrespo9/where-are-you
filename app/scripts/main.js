@@ -64,7 +64,6 @@ require('babel-polyfill');
 				}
 				throw new Error('Network response was not okay.');
 			}).then(function (detectedCountry) {
-        console.log(detectedCountry);
 				const {country, country_name} = detectedCountry;
 				const countryCodeId = `#${country}`;
 				const $countryImg = $worldMap.querySelector(countryCodeId);
